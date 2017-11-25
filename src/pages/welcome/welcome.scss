@@ -1,0 +1,18 @@
+page-welcome {
+
+  padding:0px;
+  .full-image{
+    max-width: 100%;
+  }
+  .fixed-bottom{
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+  }
+  .slide-zoom{
+    position:relative;
+    left:0px;
+    bottom:47px;
+  }
+
+}
