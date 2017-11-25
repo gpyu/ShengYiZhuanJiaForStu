@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import {WelcomePage} from "../pages/welcome/welcome";
+import {LocalStorageProvider} from "../providers/local-storage/local-storage";
 
 @Component({
   templateUrl: 'app.html'
@@ -17,8 +18,21 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+              private storage:LocalStorageProvider) {
     this.initializeApp();
+
+    let appConfig:any = this.storage.get('APP',{
+      isRun:false,
+      version:'1.0.0'
+    });
+    if(appConfig.isRun == false){
+      this.rootPage = WelcomePage;
+      appConfig.isRun = true;
+      this.storage.set('APP',appConfig);
+    }else{
+      this.rootPage = HomePage;
+    }
 
     // used for an example of ngFor and navigation
     this.pages = [
