@@ -26,9 +26,10 @@ export class MyApp {
       isRun:false,
       version:'1.0.0'
     });
+
     if(appConfig.isRun == false){
       this.rootPage = WelcomePage;
-      appConfig.isRun = true;
+      appConfig.isRun = false;
       this.storage.set('APP',appConfig);
     }else{
       this.rootPage = HomePage;
