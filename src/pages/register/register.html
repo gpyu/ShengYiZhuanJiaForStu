@@ -4,7 +4,13 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<!--<ion-header>
 
+  <ion-navbar>
+    <ion-title>RegisterPage</ion-title>
+  </ion-navbar>
+
+</ion-header>-->
 <ion-content padding>
   <div text-center>
     <img class="logo" src="assets/images/logo.png" alt="">
@@ -39,63 +45,139 @@
     </ion-row>
   </ion-grid>
   <div>
+    <!--<form [formGroup]="registerForm" (ngSubmit)="doRegister()">-->
+    <form [formGroup]="registerForm" >
     <ion-slides #registerSlides>
+
       <ion-slide>
+
         <h1>1</h1>
-        <form #registerForm="ngForm">
+        <!--<form #registerForm="ngForm">-->
           <ion-list>
             <ion-item>
-              <ion-input name="phone" type="number" placeholder="请输入您的手机号码"
+              <!--<ion-input name="phone" type="number" placeholder="请输入您的手机号码"
                          required  pattern="^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,2,3,5-9]))\\d{8}$"
-                         [(ngModel)]="register.phone" #phone="ngModel">
-              </ion-input>
+                         [(ngModel)]="register.phone" #phone="ngModel" >
+              </ion-input>-->
+              <ion-input type="text" placeholder="手机号或邮箱"
+                         clearInput formControlName="phone"></ion-input>
             </ion-item>
-            <ion-item *ngIf="phone.invalid && phone.touched">
-              <p [hidden]="!phone.errors?.required">请输入手机号码</p>
-              <p [hidden]="!phone.errors?.pattern">您输入的手机号格式不正确</p>
-            </ion-item>
+
           </ion-list>
-          <button ion-button color="primary" (click)="send()" [disabled]="registerForm.invalid">下一步</button>
-        </form>
+          <!--<button ion-button color="primary" (click)="next()" [disabled]="registerForm.invalid">下一步</button>-->
+        <button ion-button color="primary" (click)="fillPhoneNum()">下一步</button>
+        <!--</form>-->
       </ion-slide>
       <ion-slide>
         <h1>2</h1>
         <ion-list>
-        </ion-list>
-        <form #registerForm2="ngForm">
-          <ion-list>
-            <ion-item>
-              <ion-input name="code" type="number" placeholder="请输入验证码"
-                         required
-                         [(ngModel)]="register.code" #code="ngModel">
-              </ion-input>
-            </ion-item>
-            <ion-item *ngIf="code.invalid && code.touched">
-              <p [hidden]="!code.errors?.required">请输入验证码</p>
-            </ion-item>
-          </ion-list>
+          <ion-item>
+            <ion-label>
+              <ion-icon name="ios-color-filter" color="light"></ion-icon>
+            </ion-label>
+            <ion-input type="text" placeholder="验证码" clearInput formControlName="code"></ion-input>
+            <button ion-button clear item-right (click)="sendCode($event)" #sendBtn [disabled]="isTimerStart">
+              {{timerText}}
+            </button>
+          </ion-item>
           <button ion-button color="primary" (click)="previous()" >上一步</button>
           <button ion-button color="primary" (click)="validateCode()">下一步</button>
-        </form>
+        </ion-list>
+        <!--<form #registerForm2="ngForm">-->
+              <!--<ion-col>
+               &lt;!&ndash; <ion-input name="code" type="text" placeholder="请输入验证码"
+                           required [(ngModel)]="register.code" #code="ngModel"></ion-input>&ndash;&gt;
+
+                &lt;!&ndash;<ion-item *ngIf="code.invalid && code.touched">
+                  <p [hidden]="!code.errors?.required">请输入验证码</p>
+                </ion-item>&ndash;&gt;
+
+              </ion-col>-->
+              <!--<ion-label>
+                <ion-icon name="ios-color-filter" color="light"></ion-icon>
+              </ion-label>
+              <ion-input type="text" placeholder="验证码" clearInput formControlName="code"></ion-input>
+              <ion-col>
+                <button ion-button clear item-right (click)="sendCode($event)" #sendBtn [disabled]="isTimerStart">
+                  {{timerText}}
+                </button>
+                <button ion-button color="primary" (click)="previous()" >上一步</button>
+                <button ion-button color="primary" (click)="validateCode()" [disabled]="registerForm.invalid">下一步</button>-->
+        <!--</form>-->
       </ion-slide>
       <ion-slide>
         <h1>3</h1>
-        <form #registerForm3="ngForm">
+        <ion-list>
+        </ion-list>
+        <!--<form #registerForm3="ngForm">-->
           <ion-list>
-            <ion-item>
-              <ion-input name="code" type="number" placeholder="请输入验证码"
-                         required
-                         [(ngModel)]="register.code" #code="ngModel">
-              </ion-input>
-            </ion-item>
-            <ion-item *ngIf="code.invalid && code.touched">
-              <p [hidden]="!code.errors?.required">请输入验证码</p>
-            </ion-item>
-          </ion-list>
 
-          <button ion-button color="primary" (click)="previous()">上一步</button>
-        </form>
+
+
+            <ion-item>
+              <ion-input type="text" placeholder="请输入店铺的名字" clearInput formControlName="shopName"></ion-input>
+              <!--<ion-input name="shopName" type="text" placeholder="请输入店铺的名字"
+                         required pattern="^[\\s\\S]{1,8}$"
+                         [(ngModel)]="register.shopName" #shopName="ngModel">
+              </ion-input>-->
+            </ion-item>
+           <!-- <ion-item *ngIf="shopName.invalid && shopName.touched">
+              <p [hidden]="!shopName.errors?.required">请输入店铺的名字</p>
+              <p [hidden]="!shopName.errors?.pattern">输入少于8位字符</p>
+            </ion-item>-->
+
+
+            <ion-item>
+              <ion-input type="text" placeholder="请输入电子邮箱" clearInput formControlName="email"></ion-input>
+              <!--<ion-input name="email" type="email" placeholder="请输入电子邮箱"
+                         required pattern="^([A-Za-z0-9_\\-\\.])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]{2,4})$"
+                         [(ngModel)]="register.email" #email="ngModel">
+              </ion-input>-->
+            </ion-item>
+            <!--<ion-item *ngIf="email.invalid && email.touched">
+              <p [hidden]="!email.errors?.required">请输入邮箱</p>
+              <p [hidden]="!email.errors?.pattern">邮箱格式错误</p>
+            </ion-item>-->
+
+            <ion-item>
+              <ion-input type="password" placeholder="请输入密码" clearInput formControlName="password"></ion-input>
+              <!--<ion-input name="password" type="password" placeholder="请输入密码"
+                         required pattern="^(?![\d]+$)(?![a-zA-Z]+$)(?![^\da-zA-Z]+$).{6,16}$"
+                         [(ngModel)]="register.password" #password="ngModel">
+              </ion-input>-->
+            </ion-item>
+            <!--<ion-item *ngIf="password.invalid && password.touched">
+              <p [hidden]="!password.errors?.required">请输入密码</p>
+              <p [hidden]="!password.errors?.pattern">6-16位并由数字、英文或者字符至少两种构成</p>
+            </ion-item>-->
+
+            <ion-item>
+              <ion-input type="password" placeholder="请输入确认密码" clearInput formControlName="confirmPassword"></ion-input>
+              <!--<ion-input name="confirmPassword" type="password" placeholder="请输入确认密码"
+                         required
+                         [(ngModel)]="register.confirmPassword" #confirmPassword="ngModel">
+              </ion-input>-->
+            </ion-item>
+            <!--<ion-item *ngIf="confirmPassword.invalid && confirmPassword.touched">
+                <p [hidden]="!confirmPassword.errors?.required">两次输入密码不一致</p>
+            </ion-item>-->
+            <!--<ion-item *ngIf="confirmPassword != password">
+              <p class="confirmPwMsg">两次输入密码不一致</p>
+            </ion-item>-->
+          </ion-list>
+          <button ion-button color="primary" (click)="previous()" >上一步</button>
+          <button ion-button color="primary" (click)="fillAccounrInfo()">下一步</button>
+        <!--</form>-->
       </ion-slide>
+      <ion-slide>
+        <h1>4</h1>
+        <!--<form #registerForm4="ngForm">-->
+          <button ion-button color="primary" (click)="previous()">上一步</button>
+          <button ion-button color="primary" (click)="saveUserInfo()">完成</button>
+        <!--</form>-->
+      </ion-slide>
+
     </ion-slides>
+    </form>
   </div>
 </ion-content>

@@ -14,7 +14,12 @@ import { RegisterPage} from "../pages/register/register";
 import {FormsModule} from "@angular/forms";
 import { AuthenticationCodeProvider } from '../providers/authentication-code/authentication-code';
 import {SignInPage} from "../pages/sign-in/sign-in";
-
+import {CopyrightComponent} from "../components/copyright/copyright";
+import {ForgotPasswordPage} from "../pages/forgot-password/forgot-password";
+import { ToastProvider } from '../providers/toast/toast';
+import { HttpProvider } from '../providers/http/http';
+import { HttpModule} from "@angular/http";
+import { IonicStorageModule } from '@ionic/storage';
 @NgModule({
   declarations: [
     MyApp,
@@ -22,7 +27,10 @@ import {SignInPage} from "../pages/sign-in/sign-in";
     ListPage,
     WelcomePage,
     RegisterPage,
-    SignInPage
+    SignInPage,
+    CopyrightComponent,
+    ForgotPasswordPage
+
   ],
   imports: [
     BrowserModule,
@@ -30,23 +38,31 @@ import {SignInPage} from "../pages/sign-in/sign-in";
       backButtonText:'返回',
       backButtonIcon: 'arrow-dropleft-circle' // 配置返回按钮的图标
     }),
-    FormsModule
+    FormsModule,
+    HttpModule,
+    IonicStorageModule.forRoot(),
   ],
-  bootstrap: [IonicApp],
+  bootstrap: [
+    IonicApp
+  ],
   entryComponents: [
     MyApp,
     HomePage,
     ListPage,
     WelcomePage,
     RegisterPage,
-    SignInPage
+    SignInPage,
+    ForgotPasswordPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LocalStorageProvider,
-    AuthenticationCodeProvider
+    AuthenticationCodeProvider,
+    ToastProvider,
+    HttpProvider,
+
   ]
 })
 export class AppModule {}

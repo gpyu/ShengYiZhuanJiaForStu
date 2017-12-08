@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
-import {NavController, NavParams, ToastController} from 'ionic-angular';
-//AlertController,
+import {Component, ViewChild} from '@angular/core';
+import { NavController, NavParams, ToastController} from 'ionic-angular';
 import {RegisterPage} from "../register/register";
+import {ForgotPasswordPage} from "../forgot-password/forgot-password";
+import {LocalStorageProvider} from "../../providers/local-storage/local-storage";
+import {HomePage} from "../home/home";
+import {Md5} from "../../util/md5";
+import {WelcomePage} from "../welcome/welcome";
 
 /**
  * Generated class for the SignInPage page.
@@ -15,8 +19,13 @@ import {RegisterPage} from "../register/register";
   templateUrl: 'sign-in.html',
 })
 export class SignInPage {
-
+  @ViewChild('signinForm') signinForm:any;
+  signin = {
+    phone:'',
+    password:''
+  };
   constructor(public navCtrl: NavController, public navParams: NavParams,
+              private storage:LocalStorageProvider,
               private toastCtrl:ToastController) {
 //private alertCtrl:AlertController
   }
@@ -28,26 +37,46 @@ export class SignInPage {
   //...其他省略
   //点击登录按钮时调用
   login(){
+
+    let msg = '帐号或密码错误';
+    let flag = false;
+    let userlist:any = this.storage.get('userlist',null);
+    if(null != userlist){
+      for(var i=0;i<userlist.length;i++){
+        if((this.signin.phone==userlist[i].phone) && Md5.hashStr(this.signin.password)==userlist[i].password){
+          flag = true;
+        }
+      }
+      if(flag){
+        msg = "登录成功";
+      }
+    }
+    let currDate=new Date();
+    let userSession = {
+      phone:this.signin.phone,
+      loginDate:currDate.getTime()
+    }
+    this.storage.set("UserSession",userSession);
+
     let toast = this.toastCtrl.create({
-      message:'用户名不能为空',
+      message:msg,
       duration:3000
     });
     toast.present();
+    if(msg == "登录成功"){
+      this.navCtrl.push(HomePage);
+    }
     //
   }
   //点击忘记密码时调用
   toForgotPassword(){
-    //进入找回密码页面
-    /*let alert = this.alertCtrl.create({
-      title: '提示',
-      message:'用户名或者密码不正确',
-      buttons:['确定']
-    });
-    alert.present();*/
-
+    this.navCtrl.push(ForgotPasswordPage);
   }
   toRegister(){
     this.navCtrl.push(RegisterPage);
+  }
+  toWelcomePage(){
+    this.navCtrl.push(WelcomePage);
   }
 
 }

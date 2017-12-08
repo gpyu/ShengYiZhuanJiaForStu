@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import {WelcomePage} from "../pages/welcome/welcome";
 import {LocalStorageProvider} from "../providers/local-storage/local-storage";
+import {SignInPage} from "../pages/sign-in/sign-in";
 
 @Component({
   templateUrl: 'app.html'
@@ -29,13 +30,25 @@ export class MyApp {
 
     if(appConfig.isRun == false){
       this.rootPage = WelcomePage;
-      appConfig.isRun = false;
+      appConfig.isRun = true;
       this.storage.set('APP',appConfig);
     }else{
-      this.rootPage = HomePage;
-    }
 
-    // used for an example of ngFor and navigation
+      let userSession:any = this.storage.get('UserSession',null);
+      console.log(userSession);
+      if(userSession!=null){
+        let lastLoginDate = userSession.loginDate;
+        var days=Math.floor((new Date().getTime()-lastLoginDate)/(24*3600*1000));
+        if(days>7){
+          this.storage.remove('UserSession');
+          this.rootPage = SignInPage;
+        }else{
+          this.rootPage = HomePage;
+        }
+      }else{
+        this.rootPage = SignInPage;
+      }
+    }
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage }
