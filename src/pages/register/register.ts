@@ -62,6 +62,11 @@ export class RegisterPage {
     this.toastProvider.show('验证码已发送，请注意查收', 'success')
     this.isTimerStart = true;
     this.timerTracker();
+
+
+
+
+
   }
 
 
@@ -166,10 +171,17 @@ export class RegisterPage {
     let userConfig = {
       phone:this.registerForm.controls.phone.value,
       email:this.registerForm.controls.email.value,
+      shopNamePhone:'',
+      shopUserName:'',
+      shopShortName:'',
+      shopType:'',
+      aboutUs:'',
+      registerDate:new Date(),
       shopName:this.registerForm.controls.shopName.value,
       password:Md5.hashStr(this.registerForm.controls.password.value),
       flag:true
     }
+
 
     let userlist:any = this.storage.get('userlist',null);
     if(null == userlist){

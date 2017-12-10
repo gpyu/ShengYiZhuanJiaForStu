@@ -81,9 +81,6 @@ export class ForgotPasswordPage {
     this.registerSlides.lockSwipeToNext(true);
   }
   forgetPWFinish(){
-    let email = '';
-    let phone = '';
-    let isPhone = false;
     if (!this.registerForm.controls.password.valid) {
       this.toastProvider.show('请输入密码（6-16位并由数字、英文或者字符至少两种构成）', 'error')
       return;
@@ -92,44 +89,14 @@ export class ForgotPasswordPage {
       this.toastProvider.show('两次密码不一致', 'error')
       return;
     }
-    if (this.registerForm.controls.username.value.indexOf('@')>=0) {
-      isPhone = false;
-    }else{
-      isPhone = true;
-    }
-
-    let userConfig = {
-      phone:"",
-      email:"",
-      shopName:"",
-      password:"",
-      flag:true
-    }
-    let user = null;
-    let newUser = null;
-    let newUserlist = new Array();
     let userlist: any = this.storage.get('userlist', null);
     for(var i = 0; i < userlist.length; i++){
-      if(isPhone){
-        if(this.registerForm.controls.username.value == userlist[i].phone){
-          newUser = userlist[i];
-          continue;
+        if(this.registerForm.controls.username.value == userlist[i].phone || this.registerForm.controls.username.value == userlist[i].email){
+          userlist[i]['password'] = Md5.hashStr(this.registerForm.controls.password.value).toString();
+          break;
         }
-      }else{
-        if(this.registerForm.controls.username.value == userlist[i].email){
-          newUser = userlist[i];
-          continue;
-        }
-      }
-      newUserlist.push(user);
     }
-    userConfig.password = Md5.hashStr(this.registerForm.controls.password.value).toString();
-    userConfig.email = newUser.email;
-    userConfig.shopName = newUser.shopName;
-    userConfig.phone = newUser.phone;
-    userConfig.flag = true;
-    newUserlist.push(userConfig);
-    this.storage.set('userlist', newUserlist);
+    this.storage.set('userlist', userlist);
     this.toastProvider.show('密码修改完成', 'success')
     this.navCtrl.push(SignInPage);
 

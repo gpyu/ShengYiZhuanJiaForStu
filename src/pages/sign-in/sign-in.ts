@@ -32,18 +32,38 @@ export class SignInPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignInPage');
   }
-  username:string = '';//视图模型的属性账号，双向绑定
-  password:string = '';//视图模型的属性密码，双向绑定
-  //...其他省略
-  //点击登录按钮时调用
   login(){
-
+    console.log("登录");
     let msg = '帐号或密码错误';
     let flag = false;
+    let user = {
+      phone:'',
+      shopName:'',
+      shopShortName:'',
+      shopNamePhone:'',
+      shopType:'',
+      shopUserName:'',
+      email:'',
+      password:'',
+      aboutUs:'',
+      loginDate:null,
+      registerDate:null
+    };
     let userlist:any = this.storage.get('userlist',null);
     if(null != userlist){
       for(var i=0;i<userlist.length;i++){
         if((this.signin.phone==userlist[i].phone) && Md5.hashStr(this.signin.password)==userlist[i].password){
+          user.phone = userlist[i].phone;
+          user.shopName = userlist[i].shopName;
+          user.shopShortName = userlist[i].shopShortName;
+          user.shopNamePhone=userlist[i].shopNamePhone,
+          user.shopType=userlist[i].shopType;
+          user.shopUserName=userlist[i].shopUserName;
+          user.email = userlist[i].email;
+          user.loginDate = userlist[i].loginDate;
+          user.password = userlist[i].password;
+          user.registerDate = userlist[i].registerDate;
+          user.aboutUs = userlist[i].aboutUs;
           flag = true;
         }
       }
@@ -54,19 +74,26 @@ export class SignInPage {
     let currDate=new Date();
     let userSession = {
       phone:this.signin.phone,
-      loginDate:currDate.getTime()
+      loginDate:currDate.getTime(),
+      shopName:user.shopName,
+      shopNamePhone:user.shopNamePhone,
+      shopShortName:user.shopShortName,
+      shopType:'',
+      shopUserName:'',
+      password:user.password,
+      email:user.email,
+      aboutUs:user.aboutUs,
+      registerDate:user.registerDate
     }
     this.storage.set("UserSession",userSession);
-
     let toast = this.toastCtrl.create({
       message:msg,
       duration:3000
     });
     toast.present();
     if(msg == "登录成功"){
-      this.navCtrl.push(HomePage);
+      this.navCtrl.push(HomePage)
     }
-    //
   }
   //点击忘记密码时调用
   toForgotPassword(){

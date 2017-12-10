@@ -20,6 +20,12 @@ import { ToastProvider } from '../providers/toast/toast';
 import { HttpProvider } from '../providers/http/http';
 import { HttpModule} from "@angular/http";
 import { IonicStorageModule } from '@ionic/storage';
+import { SmsProvider } from '../providers/sms/sms';
+import {ShopPage} from "../pages/shop/shop";
+import {SettingPage} from "../pages/setting/setting";
+import {EditShopPage} from "../pages/edit-shop/edit-shop";
+import {EditPasswordPage} from "../pages/edit-password/edit-password";
+import {AboutUsPage} from "../pages/about-us/about-us";
 @NgModule({
   declarations: [
     MyApp,
@@ -28,15 +34,20 @@ import { IonicStorageModule } from '@ionic/storage';
     WelcomePage,
     RegisterPage,
     SignInPage,
+    ShopPage,
+    EditShopPage,
+    SettingPage,
     CopyrightComponent,
-    ForgotPasswordPage
+    ForgotPasswordPage,
+    EditPasswordPage,
+    AboutUsPage
 
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp,{
       backButtonText:'返回',
-      backButtonIcon: 'arrow-dropleft-circle' // 配置返回按钮的图标
+      //backButtonIcon: 'arrow-dropleft-circle' // 配置返回按钮的图标
     }),
     FormsModule,
     HttpModule,
@@ -52,7 +63,13 @@ import { IonicStorageModule } from '@ionic/storage';
     WelcomePage,
     RegisterPage,
     SignInPage,
-    ForgotPasswordPage
+    ShopPage,
+    SettingPage,
+    EditShopPage,
+    ForgotPasswordPage,
+    EditPasswordPage,
+    AboutUsPage
+
   ],
   providers: [
     StatusBar,
@@ -62,6 +79,7 @@ import { IonicStorageModule } from '@ionic/storage';
     AuthenticationCodeProvider,
     ToastProvider,
     HttpProvider,
+    SmsProvider,
 
   ]
 })
