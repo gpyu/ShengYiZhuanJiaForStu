@@ -19,8 +19,8 @@
         <h6>今天</h6>
         <h4><span>{{todayNumData.num1 | number:'1.2-2'}}元</span></h4>
         <p>比昨天:<span [ngClass]="{'less-equal':todayNumData.num1add <= 0, 'greater':todayNumData.num1add>0}">{{todayNumData.num1add| number:'1.2-2'}}</span>
-            <ion-icon *ngIf="todayNumData.num1add>0" name="arrow-round-up"></ion-icon>
-            <ion-icon *ngIf="todayNumData.num1add<0" name="arrow-round-down"></ion-icon>
+            <span style="color: #F00"><ion-icon *ngIf="todayNumData.num1add>0"  name="arrow-round-up"></ion-icon></span>
+            <span style="color: #0F0"><ion-icon *ngIf="todayNumData.num1add<0"  name="arrow-round-down"></ion-icon></span>
             <ion-icon *ngIf="todayNumData.num1add==0" name="arrow-round-forward"></ion-icon>
 
         </p>
@@ -29,8 +29,8 @@
         <h6>七日</h6>
         <h4><span>{{todayNumData.num2|number:'1.2-2'}}元</span></h4>
         <p>比同期:<span [ngClass]="{'less-equal':todayNumData.num2add <= 0, 'greater':todayNumData.num2add>0}">{{todayNumData.num2add| number:'1.2-2'}}</span>
-          <ion-icon *ngIf="todayNumData.num2add>0" name="arrow-round-up"></ion-icon>
-          <ion-icon *ngIf="todayNumData.num2add<0" name="arrow-round-down"></ion-icon>
+          <span style="color: #F00"><ion-icon *ngIf="todayNumData.num2add>0" name="arrow-round-up"></ion-icon></span>
+          <span style="color: #0F0"><ion-icon *ngIf="todayNumData.num2add<0" name="arrow-round-down"></ion-icon></span>
           <ion-icon *ngIf="todayNumData.num2add==0" name="arrow-round-forward"></ion-icon>
         </p>
       </ion-col>
@@ -38,8 +38,8 @@
         <h6>本月</h6>
         <h4><span>{{todayNumData.num3|number:'1.2-2'}}元</span></h4>
         <p>比同期:<span [ngClass]="{'less-equal':todayNumData.num3add <= 0, 'greater':todayNumData.num3add>0}">{{todayNumData.num3add| number:'1.2-2'}}</span>
-          <ion-icon *ngIf="todayNumData.num3add>0" name="arrow-round-up"></ion-icon>
-          <ion-icon *ngIf="todayNumData.num3add<0" name="arrow-round-down"></ion-icon>
+          <span style="color: #F00"><ion-icon *ngIf="todayNumData.num3add>0" name="arrow-round-up"></ion-icon></span>
+          <span style="color: #0F0"><ion-icon *ngIf="todayNumData.num3add<0" name="arrow-round-down"></ion-icon></span>
           <ion-icon *ngIf="todayNumData.num3add==0" name="arrow-round-forward"></ion-icon>
         </p>
       </ion-col>
