@@ -92,7 +92,7 @@ export class SignInPage {
     });
     toast.present();
     if(msg == "登录成功"){
-      this.navCtrl.push(HomePage)
+      this.navCtrl.goToRoot(HomePage)
     }
   }
   //点击忘记密码时调用

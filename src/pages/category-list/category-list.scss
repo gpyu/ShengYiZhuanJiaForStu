@@ -1,0 +1,8 @@
+page-category-list {
+  .item-active{
+    background-color: #fff;
+    border-left-color: color($colors,primary);
+    border-left-width: 4px;
+    border-left-style: solid;
+  }
+}

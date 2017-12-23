@@ -4,6 +4,7 @@ import {LocalStorageProvider} from "../../providers/local-storage/local-storage"
 import {Md5} from "../../util/md5";
 import {ToastProvider} from "../../providers/toast/toast";
 import {HomePage} from "../home/home";
+import {ShopPage} from "../shop/shop";
 
 
 /**
@@ -42,7 +43,7 @@ export class EditShopPage {
     this.storage.set('UserSession',userInfo);
     this.toastProvider.show('店铺名称修改完成', 'success')
     this.changeUserlist(this.property,this.value)
-    this.navCtrl.goToRoot(HomePage)
+    this.navCtrl.push(ShopPage)
   }
   private changeUserlist(propertyName,value){
     //修改用户列表中的值

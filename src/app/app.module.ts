@@ -26,6 +26,8 @@ import {SettingPage} from "../pages/setting/setting";
 import {EditShopPage} from "../pages/edit-shop/edit-shop";
 import {EditPasswordPage} from "../pages/edit-password/edit-password";
 import {AboutUsPage} from "../pages/about-us/about-us";
+import {CategoryListPage} from "../pages/category-list/category-list";
+import {CategoryProvider} from "../providers/category/category";
 @NgModule({
   declarations: [
     MyApp,
@@ -40,7 +42,9 @@ import {AboutUsPage} from "../pages/about-us/about-us";
     CopyrightComponent,
     ForgotPasswordPage,
     EditPasswordPage,
-    AboutUsPage
+    AboutUsPage,
+    CategoryListPage,
+
 
   ],
   imports: [
@@ -68,8 +72,8 @@ import {AboutUsPage} from "../pages/about-us/about-us";
     EditShopPage,
     ForgotPasswordPage,
     EditPasswordPage,
-    AboutUsPage
-
+    AboutUsPage,
+    CategoryListPage,
   ],
   providers: [
     StatusBar,
@@ -80,7 +84,7 @@ import {AboutUsPage} from "../pages/about-us/about-us";
     ToastProvider,
     HttpProvider,
     SmsProvider,
-
+    CategoryProvider,
   ]
 })
 export class AppModule {}

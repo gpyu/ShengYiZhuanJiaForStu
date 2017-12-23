@@ -185,7 +185,7 @@ export class RegisterPage {
 
     let userlist:any = this.storage.get('userlist',null);
     if(null == userlist){
-      var arrayObj = new Array();
+      let arrayObj = new Array();
       arrayObj.push(userConfig);
       this.storage.set('userlist',arrayObj);
     }else{

@@ -18,23 +18,30 @@ import {ToastProvider} from "../../providers/toast/toast";
 })
 export class ShopPage {
   editShopPage :any = EditShopPage;
-  userInfo = {
-    shopName:'',
-    email:'',
-    phone:'',
-    password:'',
-    shopNamePhone:'',
-    shopShortName:'',
-    shopUserName:'',
-    aboutUs:'',
-    registerDate:'',
-    shopType:''
-  }
+  shopName:string;
+  email:string;
+  phone:string;
+  password:string;
+  shopNamePhone:string;
+  shopShortName:string;
+  shopUserName:string;
+  aboutUs:string;
+  registerDate:string;
+  shopType:string;
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private storage:LocalStorageProvider,
               private toastProvider:ToastProvider) {
-    this.userInfo = this.storage.get('UserSession',null);
-
+    let userInfo = this.storage.get('UserSession',null);
+    this.shopName = userInfo.shopName;
+    this.email = userInfo.email;
+    this.phone = userInfo.phone;
+    this.password = userInfo.password;
+    this.shopNamePhone = userInfo.shopNamePhone;
+    this.shopShortName = userInfo.shopShortName;
+    this.shopUserName = userInfo.shopUserName;
+    this.aboutUs = userInfo.aboutUs;
+    this.registerDate = userInfo.registerDate;
+    this.shopType = userInfo.shopType;
   }
 
   ionViewDidLoad() {

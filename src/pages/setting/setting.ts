@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {SignInPage} from "../sign-in/sign-in";
 import {ShopPage} from "../shop/shop";
 import {LocalStorageProvider} from "../../providers/local-storage/local-storage";
-import {ForgotPasswordPage} from "../forgot-password/forgot-password";
 import {EditPasswordPage} from "../edit-password/edit-password";
 import {AboutUsPage} from "../about-us/about-us";
 
@@ -26,6 +25,7 @@ export class SettingPage {
   editPasswordPage :any = EditPasswordPage;
   aboutUsPage:any = AboutUsPage;
   APP;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private storage:LocalStorageProvider,
               ) {
