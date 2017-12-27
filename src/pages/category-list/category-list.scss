@@ -1,8 +1,25 @@
 page-category-list {
-  .item-active{
-    background-color: #fff;
-    border-left-color: color($colors,primary);
-    border-left-width: 4px;
-    border-left-style: solid;
-  }
+
+}
+.right-list,.on-right
+{
+  position:relative;
+  left: 40%;
+  width:  60%;
+  bottom: -92%;
+}
+.left-list{
+  width:40%;
+  margin-left: 0;
+  //color:color($colors,dark);
+  background-color: gray;
+}
+.left-list-background{
+  background-color: gray;
+}
+.item-active{
+  background-color: #fff;
+  border-left-color: color($colors,primary);
+  border-left-width: 4px;
+  border-left-style: solid;
 }

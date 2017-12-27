@@ -28,6 +28,10 @@ import {EditPasswordPage} from "../pages/edit-password/edit-password";
 import {AboutUsPage} from "../pages/about-us/about-us";
 import {CategoryListPage} from "../pages/category-list/category-list";
 import {CategoryProvider} from "../providers/category/category";
+import {CategoryAddPage} from "../pages/category-add/category-add";
+import {CategoryAddSubPage} from "../pages/category-add-sub/category-add-sub";
+import {CategoryEditPage} from "../pages/category-edit/category-edit";
+import {CategoryNameEditPage} from "../pages/category-name-edit/category-name-edit";
 @NgModule({
   declarations: [
     MyApp,
@@ -44,7 +48,10 @@ import {CategoryProvider} from "../providers/category/category";
     EditPasswordPage,
     AboutUsPage,
     CategoryListPage,
-
+    CategoryAddPage,
+    CategoryAddSubPage,
+    CategoryEditPage,
+    CategoryNameEditPage
 
   ],
   imports: [
@@ -74,6 +81,10 @@ import {CategoryProvider} from "../providers/category/category";
     EditPasswordPage,
     AboutUsPage,
     CategoryListPage,
+    CategoryAddPage,
+    CategoryAddSubPage,
+    CategoryEditPage,
+    CategoryNameEditPage
   ],
   providers: [
     StatusBar,

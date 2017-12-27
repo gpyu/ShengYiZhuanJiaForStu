@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {LocalStorageProvider} from "../../providers/local-storage/local-storage";
-import {Md5} from "../../util/md5";
 import {ToastProvider} from "../../providers/toast/toast";
-import {HomePage} from "../home/home";
 import {ShopPage} from "../shop/shop";
 
 

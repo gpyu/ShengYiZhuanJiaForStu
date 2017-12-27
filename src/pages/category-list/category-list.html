@@ -4,36 +4,45 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<script>
+  function changeClass(){
+    $scope.className = true;
+  }
+</script>
+
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>商品分类</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="gotoAddCategory()"><ion-icon name="add"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content no-padding class="left-list" >
-
+<ion-content no-padding class="left-list">
   <ion-list>
-    <ion-item *ngFor="let category of categories" (click)="selectCategory()">
-      {{category.name}}
-    </ion-item>
-    <ion-item>
-      小分类1
-    </ion-item>
+    <ion-item class="left-list-background">大分类</ion-item>
+    <ion-item class="left-list-background" *ngFor="let category of categories;let i = index;" [ngClass]="{'item-active':i == activeCategoryId}" (click)="selectCategory(category)">{{category.name}}</ion-item>
   </ion-list>
-
 </ion-content>
-<ion-content no-padding class="right-list" >
+
+<ion-content no-padding class="right-list">
   <ion-list>
-    <ion-item *ngFor="let category of activeCategory.children" (click)="selectCategory()">
-      {{category.name}}
-    </ion-item>
-    <ion-item>
-      大分类1
-    </ion-item>
-
+    <ion-item>小分类</ion-item>
+    <button ion-item *ngFor="let category of activeSubCategories" (click)="selectSubCategory(category)">{{category.name}}</button>
+    <ion-icon padding name="add-circle" (click)="gotoAddSubCategory()">新增小分类</ion-icon>
   </ion-list>
-
 </ion-content>
+
+<ion-footer class="on-right">
+  <ion-toolbar>
+    <ion-item *ngIf="activeSubCategoriesLength == 0">
+      <p>目前没有小分类<ion-icon style="border: 1px gray; float: right" name="more" icon-only (click)="presentActionSheet('更多')"></ion-icon></p>
+    </ion-item>
+    <ion-item *ngIf="activeSubCategoriesLength > 0">
+      <p>共{{activeSubCategories.length}}种小分类<ion-icon style="border: 1px gray; float: right" name="more" icon-only (click)="presentActionSheet('更多')"></ion-icon></p>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

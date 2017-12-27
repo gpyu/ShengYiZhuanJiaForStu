@@ -1,0 +1,56 @@
+<!--
+  Generated template for the CategoryEditPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>编辑商品分类</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>
+      大分类
+    </ion-list-header>
+    <ion-item-sliding>
+      <ion-item>
+        <h2 padding>{{activeCategory.name}}</h2>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="presentModal(-1)">
+          <ion-icon name="paper"></ion-icon>
+          编辑
+        </button>
+        <button ion-button color="secondary" (click)="showConfirm(-1)">
+          <ion-icon name="remove"></ion-icon>
+          删除
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+    <ion-list-header>
+      小分类
+    </ion-list-header>
+    <ion-item-sliding  *ngFor="let category of activeSubCategories;let i = index;">
+      <ion-item>
+        <h3 padding>{{category.name}}</h3>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="presentModal(i)">
+          <ion-icon name="paper"></ion-icon>
+          编辑
+        </button>
+        <button ion-button color="secondary" (click)="showConfirm(i)">
+          <ion-icon name="remove"></ion-icon>
+          删除
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <button ion-button block parmary style="margin-top: 20px" (click)="save()">保存</button>
+</ion-content>
