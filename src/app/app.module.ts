@@ -32,6 +32,9 @@ import {CategoryAddPage} from "../pages/category-add/category-add";
 import {CategoryAddSubPage} from "../pages/category-add-sub/category-add-sub";
 import {CategoryEditPage} from "../pages/category-edit/category-edit";
 import {CategoryNameEditPage} from "../pages/category-name-edit/category-name-edit";
+import { ProductProvider } from '../providers/product/product';
+import {AddProductPage} from "../pages/add-product/add-product";
+import {PhotoLibrary} from "@ionic-native/photo-library";
 @NgModule({
   declarations: [
     MyApp,
@@ -51,17 +54,20 @@ import {CategoryNameEditPage} from "../pages/category-name-edit/category-name-ed
     CategoryAddPage,
     CategoryAddSubPage,
     CategoryEditPage,
-    CategoryNameEditPage
+    CategoryNameEditPage,
+    AddProductPage
 
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp,{
       backButtonText:'返回',
+
       //backButtonIcon: 'arrow-dropleft-circle' // 配置返回按钮的图标
     }),
     FormsModule,
     HttpModule,
+
     IonicStorageModule.forRoot(),
   ],
   bootstrap: [
@@ -84,7 +90,8 @@ import {CategoryNameEditPage} from "../pages/category-name-edit/category-name-ed
     CategoryAddPage,
     CategoryAddSubPage,
     CategoryEditPage,
-    CategoryNameEditPage
+    CategoryNameEditPage,
+    AddProductPage
   ],
   providers: [
     StatusBar,
@@ -96,6 +103,7 @@ import {CategoryNameEditPage} from "../pages/category-name-edit/category-name-ed
     HttpProvider,
     SmsProvider,
     CategoryProvider,
+    ProductProvider,
   ]
 })
 export class AppModule {}

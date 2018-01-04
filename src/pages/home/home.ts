@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {LocalStorageProvider} from "../../providers/local-storage/local-storage";
 import {CategoryListPage} from "../category-list/category-list";
+import {ProductPage} from "../product/product";
+import {AddProductPage} from "../add-product/add-product";
 
 @Component({
   selector: 'page-home',
@@ -57,5 +59,9 @@ export class HomePage {
   }
   category(){
     this.navCtrl.push(CategoryListPage);
+  }
+
+  addProductPage(){
+    this.navCtrl.push(AddProductPage);
   }
 }

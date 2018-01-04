@@ -57,7 +57,9 @@ export class RegisterPage {
   }
 
   send(){
-    console.log(this.authenticationCodeService.createCode(4));
+    let code = this.authenticationCodeService.createCode(4);
+    console.log(code);
+    this.toastProvider.show(code, 'success')
     //没有使用短信云服务发送验证码，先在控制台输出生成的验证码
     this.toastProvider.show('验证码已发送，请注意查收', 'success')
     this.isTimerStart = true;

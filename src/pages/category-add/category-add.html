@@ -7,12 +7,30 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>CategoryAddPage</ion-title>
+    <ion-title>新增分类</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <Form>
+    <ion-list>
+      <ion-list-header>
+        大分类
+      </ion-list-header>
+      <ion-item>
+        <!--<h2 padding>电子产品</h2>-->
+        <ion-input name="bigCategory" [(ngModel)]="categoryToAdd.name" placeholder="请输入大分类的名称"></ion-input>
+      </ion-item>
+      <ion-list-header>
+        小分类
+      </ion-list-header>
+      <ion-item *ngFor="let subCategory of subCategoriesList;let i = index;">
+        <ion-input name="subCategory" [(ngModel)]="subCategoriesList[i].name" placeholder="小分类{{i+1}}"></ion-input>
+      </ion-item>
+    </ion-list>
+  </Form>
+  <ion-icon name="add-circle" (click)="addSubCategory()">新增小分类</ion-icon>
+  <button ion-button block parmary style="margin-top: 20px" (click)="save()">保存</button>
 </ion-content>

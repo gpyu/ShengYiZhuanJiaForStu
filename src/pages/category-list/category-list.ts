@@ -70,6 +70,10 @@ export class CategoryListPage {
     actionSheet.present();
   }
 
+  /**
+   * 选择大类别
+   * @param {Category} category
+   */
   selectCategory(category:Category){
     this.activeCategory = category;
     let i:number;
@@ -82,6 +86,26 @@ export class CategoryListPage {
       }
     }
   }
+  /**
+   * 使用Events
+   * 选择小类别
+   */
+  selectSubCategory(category:Category){
+    this.categoryService.updateActiveCategory(category);
+    this.activeSubCategory = category;
+    this.navCtrl.pop();
+  }
+
+  /**
+   * 使用subject
+   * @param {Category} category
+   */
+  selectSubCategory1(category:Category){
+    this.categoryService.updateActiveCategory1(category)
+    this.activeSubCategory = category;
+    this.navCtrl.pop();
+  }
+
 
   gotoAddSubCategory(){
     this.navCtrl.push(CategoryAddSubPage,{
@@ -101,10 +125,7 @@ export class CategoryListPage {
     this.navCtrl.push(CategoryAddPage);
   }
 
-  selectSubCategory(category:Category){
-    this.activeSubCategory = category;
-    this.navCtrl.pop();
-  }
+
 
   refresh(){
     if(!this.isFirstEnter){

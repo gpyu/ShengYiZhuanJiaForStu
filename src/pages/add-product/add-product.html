@@ -1,0 +1,77 @@
+<!--
+  Generated template for the AddProductPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>添加商品</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  <form #addProductForm>
+  <ion-list>
+    <ion-item>
+      <p item-start>
+        <ion-thumbnail>
+          <img id="myImage" src="assets/images/supplier_icon.png">
+        </ion-thumbnail>
+      </p>
+      <p item-end (click)="addPicture()" >上传图片</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>条码</ion-label>
+      <ion-input name="barcode" type="text"  [(ngModel)]="product.barcode" #barcode="ngModel"></ion-input>
+      <ion-icon name="qr-scanner" style="color: #FF6A3C;" item-end></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-label>名称<span style="color: #FF6A3C;"> *</span></ion-label>
+      <ion-input name="name" type="text"  [(ngModel)]="product.name" #name="ngModel" placeholder="输入商品名称"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="name.invalid && name.touched">
+      <p [hidden]="!name.errors?.required">请输入手机号码</p>
+    </ion-item>
+    <button ion-item [navPush]="categoryList">
+      <p>分类<span style="color: #FF6A3C;"> *</span></p>
+      <ion-note item-end>{{product.categoryName}}</ion-note>
+    </button>
+    <ion-item>
+      <ion-label>售价<span style="color: #FF6A3C;"> *</span></ion-label>
+      <ion-input name="price" type="text"  [(ngModel)]="product.price" #price="ngModel" placeholder="输入商品售价"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>进价</ion-label>
+      <ion-input name="purchasePrice" type="text"  [(ngModel)]="product.purchasePrice" #purchasePrice="ngModel" placeholder="输入商品进价"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>库存</ion-label>
+      <ion-input name="stock" type="text"  [(ngModel)]="product.stock" #stock="ngModel" placeholder="输入商品库存"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>规格</ion-label>
+      <ion-input name="spec" type="text"  [(ngModel)]="product.spec" #spec="ngModel" placeholder="规格 型号 尺寸"></ion-input>
+    </ion-item>
+    <button ion-item (click)="showPrompt()">
+      <p>供货商<span>*</span></p>
+      <ion-note item-end>{{product.categoryName}}</ion-note>
+    </button>
+  </ion-list>
+  </form>
+</ion-content>
+
+<ion-grid no-padding style="position: fixed;bottom: 0px;left: 0px;right: 0px;z-index: 1">
+  <ion-row no-padding>
+    <ion-col no-padding>
+      <button ion-button block color="primary" (click)="add()">完成</button>
+    </ion-col>
+    <ion-col no-padding>
+      <button ion-button block color="primary" (click)="saveAndNew()" >继续添加</button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
