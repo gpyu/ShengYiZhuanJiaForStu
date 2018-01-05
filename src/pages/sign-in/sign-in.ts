@@ -91,8 +91,8 @@ export class SignInPage {
       duration:3000
     });
     toast.present();
-    if(msg == "登录成功"){
-      this.navCtrl.goToRoot(HomePage)
+    if(flag){
+      this.navCtrl.popToRoot(HomePage)
     }
   }
   //点击忘记密码时调用

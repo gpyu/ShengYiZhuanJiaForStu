@@ -11,5 +11,5 @@ export class Product{
   purchasePrice:number;
   stock:number;
   spec:string;
-  //其他略
+  phone:string;
 }

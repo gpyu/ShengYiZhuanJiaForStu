@@ -1,9 +1,10 @@
-import {Component, ViewChild} from '@angular/core';
-import {AlertController, Events, NavController, NavParams} from 'ionic-angular';
-import {Product} from "../shared/product";
-import {CategoryListPage} from "../category-list/category-list";
+import { Component } from '@angular/core';
+import {AlertController, Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {CategoryProvider} from "../../providers/category/category";
 import {ProductProvider} from "../../providers/product/product";
+import {Product} from "../shared/product";
+import {CategoryListPage} from "../category-list/category-list";
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the AddProductPage page.
@@ -12,19 +13,17 @@ import {ProductProvider} from "../../providers/product/product";
  * Ionic pages and navigation.
  */
 
+@IonicPage()
 @Component({
   selector: 'page-add-product',
   templateUrl: 'add-product.html',
 })
 export class AddProductPage {
-  //@ViewChild('addProductForm') addProductForm:any;
-
   product:Product;
-
   categoryList:any;
   subscription:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,private categoryService:CategoryProvider,
-  private events:Events, public alertCtrl: AlertController,private productService:ProductProvider) {
+              private events:Events, public alertCtrl: AlertController,private productService:ProductProvider) {
     this.categoryList = CategoryListPage;
     this.product = new Product();
     this.product.categoryId = categoryService.activeCategory.id;
@@ -49,13 +48,6 @@ export class AddProductPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddProductPage');
   }
-
-  /*ionViewDidLeave(){
-    if(this.subscription){
-      this.subscription.unsubscribe();
-    }
-  }*/
-
   showPrompt() {
     let prompt = this.alertCtrl.create({
       title: '新增供货商',
@@ -81,6 +73,8 @@ export class AddProductPage {
           handler: data => {
             console.log(data);
             console.log('Saved clicked');
+            this.product.name=data.name;
+            this.product.phone=data.phone;
           }
         }
       ]
@@ -90,8 +84,9 @@ export class AddProductPage {
 
   add(){
     this.productService.add(this.product);
+    this.navCtrl.push(HomePage);
   }
   saveAndNew(){
-
+    this.navCtrl.push(AddProductPage);
   }
 }
