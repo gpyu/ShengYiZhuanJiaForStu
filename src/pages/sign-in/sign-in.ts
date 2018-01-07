@@ -27,9 +27,9 @@ export class SignInPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private storage:LocalStorageProvider,
               private toastCtrl:ToastController) {
-//private alertCtrl:AlertController
   }
   ionViewDidLoad() {
+    console.log('进入登录页面');
     console.log('ionViewDidLoad SignInPage');
   }
   login(){
@@ -85,15 +85,20 @@ export class SignInPage {
       aboutUs:user.aboutUs,
       registerDate:user.registerDate
     }
-    this.storage.set("UserSession",userSession);
+
+    console.log(flag);
+    if(flag){
+      this.storage.set("UserSession",userSession);
+      console.log(userSession);
+      this.navCtrl.setRoot(HomePage);
+    }
+/*
     let toast = this.toastCtrl.create({
       message:msg,
       duration:3000
     });
     toast.present();
-    if(flag){
-      this.navCtrl.popToRoot(HomePage)
-    }
+    */
   }
   //点击忘记密码时调用
   toForgotPassword(){

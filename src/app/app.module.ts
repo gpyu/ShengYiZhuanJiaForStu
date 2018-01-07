@@ -35,6 +35,10 @@ import {CategoryNameEditPage} from "../pages/category-name-edit/category-name-ed
 import { ProductProvider } from '../providers/product/product';
 import {AddProductPage} from "../pages/add-product/add-product";
 import {PhotoLibrary} from "@ionic-native/photo-library";
+import {BarcodeScanner} from "@ionic-native/barcode-scanner";
+import {Camera} from "@ionic-native/camera";
+import {ImagePicker} from "@ionic-native/image-picker";
+import {ProductListPage} from "../pages/product-list/product-list";
 @NgModule({
   declarations: [
     MyApp,
@@ -55,7 +59,8 @@ import {PhotoLibrary} from "@ionic-native/photo-library";
     CategoryAddSubPage,
     CategoryEditPage,
     CategoryNameEditPage,
-    AddProductPage
+    AddProductPage,
+    ProductListPage
 
   ],
   imports: [
@@ -91,7 +96,8 @@ import {PhotoLibrary} from "@ionic-native/photo-library";
     CategoryAddSubPage,
     CategoryEditPage,
     CategoryNameEditPage,
-    AddProductPage
+    AddProductPage,
+    ProductListPage
   ],
   providers: [
     StatusBar,
@@ -104,6 +110,9 @@ import {PhotoLibrary} from "@ionic-native/photo-library";
     SmsProvider,
     CategoryProvider,
     ProductProvider,
+    BarcodeScanner,
+    Camera,
+    ImagePicker,
   ]
 })
 export class AppModule {}

@@ -24,18 +24,30 @@ export class CategoryListPage {
   activeSubCategories:Array<Category>;
   activeSubCategory:Category;
 
-  categoriesLength:number;
   activeSubCategoriesLength:number;
   activeCategoryId:number;
 
   isFirstEnter:boolean;
+  categoryToAdd:Category;
+  subCategoriesLength:number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private categoryService: CategoryProvider, public actionSheetCtrl: ActionSheetController) {
+    categoryService.get().then((data)=>{
+      this.categories = data;
+      this.activeCategory = this.categories[0];
+      this.subCategoriesLength = 0;
+      this.categoryToAdd = {
+        id:this.categories.length + 1,
+        name:'',
+        children:[]
+      };
+    })
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CategoryListPage');
     this.isFirstEnter = false;
+    console.log(this.navCtrl.getPrevious().name)
   }
 
   ionViewDidEnter(){
@@ -76,6 +88,7 @@ export class CategoryListPage {
    */
   selectCategory(category:Category){
     this.activeCategory = category;
+    this.activeCategoryId = category.id;
     let i:number;
     for(i=0;i<this.categories.length;i++){
       if(this.activeCategory.id == this.categories[i].id) {
@@ -91,6 +104,10 @@ export class CategoryListPage {
    * 选择小类别
    */
   selectSubCategory(category:Category){
+    console.log(category.id)
+    if(null == category){
+      category = this.categories[0];
+    }
     this.categoryService.updateActiveCategory(category);
     this.activeSubCategory = category;
     this.navCtrl.pop();

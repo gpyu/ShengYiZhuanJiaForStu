@@ -17,17 +17,16 @@
   <form #addProductForm>
     <ion-list>
       <ion-item>
-        <p item-start>
-          <ion-thumbnail>
-            <img id="myImage" src="assets/images/supplier_icon.png">
-          </ion-thumbnail>
-        </p>
-        <p item-end (click)="addPicture()" >上传图片</p>
+        <img id="myImage" (click)="pickImages()"  style="width:80px;height:80px;" src="assets/images/supplier_icon.png" *ngIf="product!=null && product.images.length<3">
+        <span  style="z-index:3">
+          <img style="max-width:80px;max-height:80px;" [src]='image' *ngFor="let image of product.images"/>
+        </span>
+        <p item-end >上传图片</p>
       </ion-item>
 
-      <ion-item>
+      <ion-item (click)="scanBarcode()">
         <ion-label>条码</ion-label>
-        <ion-input name="barcode" type="text"  [(ngModel)]="product.barcode" #barcode="ngModel"></ion-input>
+        <ion-input name="barcode" type="text" readonly  [(ngModel)]="product.barcode" #barcode="ngModel"></ion-input>
         <ion-icon name="qr-scanner" style="color: #FF6A3C;" item-end></ion-icon>
       </ion-item>
       <ion-item>

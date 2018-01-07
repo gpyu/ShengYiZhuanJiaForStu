@@ -29,15 +29,12 @@
 </ion-content>
 
 <ion-content no-padding class="right-list">
-  <ion-list>
+  <ion-list><!--{{activeCategory.id}}{{activeCategory.name}}-->
     <ion-item>小分类</ion-item>
+    <button ion-item  (click)="selectSubCategory(activeCategory)">无小分类</button>
     <button ion-item *ngFor="let category of activeSubCategories" (click)="selectSubCategory(category)">{{category.name}}</button>
     <ion-icon padding name="add-circle" (click)="gotoAddSubCategory()">新增小分类</ion-icon>
   </ion-list>
-
-
-
-
 </ion-content>
 
 <ion-footer class="on-right">
